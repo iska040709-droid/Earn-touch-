@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EarnTouch</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+}
+.card{
+background:#1e1e1e;
+padding:20px;
+border-radius:15px;
+margin:10px auto;
+max-width:500px;
+}
+button{
+padding:12px 20px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+.counter{
+font-size:60px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⚽ EarnTouch</h1>
+
+<div class="card">
+<h2>Juggles</h2>
+<div class="counter" id="count">0</div>
+
+<button onclick="addJuggle()">+1 Juggle</button>
+<button onclick="resetCount()">Reset</button>
+</div>
+
+<div class="card">
+<h2>Earned Phone Time</h2>
+<p id="time">0 min 0 sec</p>
+</div>
+
+<div class="card">
+<h2>Coach Feedback</h2>
+<p id="feedback">Start juggling!</p>
+</div>
+
+<script>
+
+let touches = 0;
+
+function addJuggle(){
+
+touches++;
+
+document.getElementById("count").innerText = touches;
+
+let earnedSeconds = touches * 10;
+
+let mins = Math.floor(earnedSeconds / 60);
+let secs = earnedSeconds % 60;
+
+document.getElementById("time").innerText =
+mins + " min " + secs + " sec";
+
+let feedback = "";
+
+if(touches < 20){
+feedback = "Keep the ball lower and stay relaxed.";
+}
+else if(touches < 50){
+feedback = "Good. Use both feet more often.";
+}
+else if(touches < 100){
+feedback = "Excellent control. Work on weak foot touches.";
+}
+else{
+feedback = "Elite session. Challenge yourself with alternating feet.";
+}
+
+document.getElementById("feedback").innerText = feedback;
+}
+
+function resetCount(){
+touches = 0;
+document.getElementById("count").innerText = 0;
+document.getElementById("time").innerText = "0 min 0 sec";
+document.getElementById("feedback").innerText = "Start juggling!";
+}
+
+</script>
+
+</body>
+</html>
